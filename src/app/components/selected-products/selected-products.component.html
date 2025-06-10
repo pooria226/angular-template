@@ -1,0 +1,7 @@
+<h3>محصولات انتخاب شده</h3>
+<ul>
+  <li *ngFor="let product of selectedProducts" class="selected-product-item">
+    <p>{{ product.title }}</p>
+    <button (click)="removeProduct(product)">حذف</button>
+  </li>
+</ul>

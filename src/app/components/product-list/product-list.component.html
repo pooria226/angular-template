@@ -1,0 +1,23 @@
+<div class="product-list-container">
+  <h3>Product List</h3>
+  <input
+    type="text"
+    placeholder="Search products..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearchChange()"
+    class="search-input"
+  />
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <ul *ngIf="!loading && !error">
+    <li *ngFor="let product of filteredProducts" class="product-item">
+      <img [src]="product.image" alt="{{ product.title }}" />
+      <div class="product-info">
+        <h4>{{ product.title }}</h4>
+        <p>{{ product.category }}</p>
+        <p>{{ product.price | currency : "USD" }}</p>
+        <button (click)="selectProduct(product)">Select</button>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,21 @@
+<div class="user-list-container">
+  <h3>User List</h3>
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search users..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearchChange()"
+  />
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <ul *ngIf="!loading && !error && filteredUsers.length > 0">
+    <li *ngFor="let user of filteredUsers" (click)="selectUser(user)">
+      <strong>{{ user.name }}</strong> ({{ user.username }})<br />
+      <small>{{ user.email }}</small>
+    </li>
+  </ul>
+  <p *ngIf="!loading && !error && filteredUsers.length === 0">
+    No users to display.
+  </p>
+</div>
